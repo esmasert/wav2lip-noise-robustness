@@ -1,0 +1,2 @@
+experiment_name,audio_condition,noise_type,preprocessing,wav2lip_used,av_offset,min_dist,confidence,observation
+baseline,clean,none,none,True,0.10,0.35,0.87,Good alignment

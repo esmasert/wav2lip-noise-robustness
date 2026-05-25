@@ -1,0 +1,7 @@
+AV offset: 0.15
+Min dist: 0.42
+Confidence: 0.78
+
+AV offset: 0.14
+Min dist: 0.39
+Confidence: 0.80

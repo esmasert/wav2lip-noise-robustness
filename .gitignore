@@ -1,0 +1,35 @@
+# Model checkpoints
+*.pth
+*.pt
+*.ckpt
+*.model
+
+# Python cache
+__pycache__/
+*.pyc
+
+# MacOS
+.DS_Store
+
+# Virtual envs
+uv_env*/
+denoise_env/
+
+# Temporary
+temp/
+
+# Large raw videos outside repo
+*.mov
+*.mkv
+
+# Keep repo experiment videos
+# (do not ignore mp4/avi inside repo)
+
+# Optional: ignore extremely large files
+results/videos/**/*.avi
+
+# Keep audio samples
+# (do not ignore wav files)
+
+# Logs
+*.log
