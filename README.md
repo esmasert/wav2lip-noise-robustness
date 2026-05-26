@@ -24,6 +24,29 @@ Evaluate how background noise and denoising (DeepFilterNet3) affect Wav2Lip gene
 ## DeepFilterNet preprocessing pipeline
 - Run `scripts/run_deepfilternet.sh` to denoise noisy audio files and save into `audio_samples/`
 
+## Additional SyncNet Behaviour Experiments
+
+Additional controlled SyncNet experiments were performed to analyse how SyncNet reacts under different temporal and acoustic conditions.
+
+The tested conditions included:
+- audio delay (+200 ms)
+- audio advance (-200 ms)
+- overlapping speakers
+- loud competing speaker overlap
+- noisy audio
+- Wav2Lip generated videos
+
+Key observations:
+- Artificial audio delay and advance changed the predicted AV offset as expected.
+- Competing speaker overlap reduced SyncNet confidence significantly.
+- Full overlap conditions produced very low confidence despite temporal alignment.
+- Wav2Lip-generated videos achieved very high SyncNet confidence scores.
+- Some noisy or perceptually unnatural videos still received moderate SyncNet scores.
+
+Results are available in:
+- `results/syncnet_analysis/tables/syncnet_behaviour_results.md`
+- `results/syncnet_analysis/videos/`
+
 ## Results and summaries
 Full raw SyncNet logs are kept at `results/syncnet_logs/all_syncnet_results.txt`.
 
@@ -34,25 +57,38 @@ Structured result tables are available in `results/tables/`:
 
 Below is a concise, cleaned summary of the main SyncNet metrics from the experiments:
 
-| Experiment | Category | AV Offset | Min Dist | Confidence |
+## Main Wav2Lip Noise Robustness Results
+
+| Experiment | Condition | AV Offset | Min Dist | Confidence |
 |---|---|---:|---:|---:|
-| Baseline original video | Original video | 2 | 8.159 | 5.387 |
-| Baseline Wav2Lip with original audio | Original audio → Wav2Lip | -2 | 7.463 | 7.159 |
-| Dave + background people noise | Noisy Wav2Lip, Dave audio | -2 | 8.873 | 5.184 |
-| Dave + cat meow | Noisy Wav2Lip, Dave audio | -2 | 9.543 | 5.236 |
-| Dave + guitar music | Noisy Wav2Lip, Dave audio | -2 | 8.443 | 5.583 |
-| Dave + piano music | Noisy Wav2Lip, Dave audio | -2 | 8.339 | 5.778 |
-| Dave + violin music | Noisy Wav2Lip, Dave audio | -2 | 7.972 | 6.498 |
-| Original + background people noise | Noisy Wav2Lip, original audio | -2 | 8.656 | 4.592 |
-| Original + cat meow | Noisy Wav2Lip, original audio | -2 | 9.083 | 5.081 |
-| Original + guitar music | Noisy Wav2Lip, original audio | -2 | 8.445 | 5.367 |
-| Original + piano music | Noisy Wav2Lip, original audio | -2 | 8.224 | 5.248 |
-| Original + violin music | Noisy Wav2Lip, original audio | -2 | 8.146 | 5.693 |
-| Original + background people noise + DeepFilterNet3 | Denoised Wav2Lip | -2 | 7.682 | 6.349 |
-| Original + cat meow + DeepFilterNet3 | Denoised Wav2Lip | -2 | 7.965 | 6.622 |
-| Original + guitar music + DeepFilterNet3 | Denoised Wav2Lip | -2 | 7.581 | 6.646 |
-| Original + piano music + DeepFilterNet3 | Denoised Wav2Lip | -2 | 7.427 | 6.719 |
-| Original + violin music + DeepFilterNet3 | Denoised Wav2Lip | -2 | 7.461 | 6.943 |
+| Original video | Clean original video | 2 | 8.159 | 5.387 |
+| Wav2Lip clean audio | Clean original audio → Wav2Lip | -2 | 7.463 | 7.159 |
+| Background speech noise | Noisy original audio → Wav2Lip | -2 | 8.656 | 4.592 |
+| Cat meow | Noisy original audio → Wav2Lip | -2 | 9.083 | 5.081 |
+| Guitar music | Noisy original audio → Wav2Lip | -2 | 8.445 | 5.367 |
+| Piano music | Noisy original audio → Wav2Lip | -2 | 8.224 | 5.248 |
+| Violin music | Noisy original audio → Wav2Lip | -2 | 8.146 | 5.693 |
+| Background speech + DeepFilterNet3 | Denoised audio → Wav2Lip | -2 | 7.682 | 6.349 |
+| Cat meow + DeepFilterNet3 | Denoised audio → Wav2Lip | -2 | 7.965 | 6.622 |
+| Guitar music + DeepFilterNet3 | Denoised audio → Wav2Lip | -2 | 7.581 | 6.646 |
+| Piano music + DeepFilterNet3 | Denoised audio → Wav2Lip | -2 | 7.427 | 6.719 |
+| Violin music + DeepFilterNet3 | Denoised audio → Wav2Lip | -2 | 7.461 | 6.943 |
+
+## Additional SyncNet Behaviour Results
+
+| Experiment | Condition | AV Offset | Min Dist | Confidence | Interpretation |
+|---|---|---:|---:|---:|---|
+| Original video | Clean original video | 2 | 8.159 | 5.387 | Baseline SyncNet behaviour |
+| Audio advanced 200 ms | Manual temporal shift | 7 | 8.514 | 5.109 | SyncNet offset changed under artificial misalignment |
+| Audio delayed 200 ms | Manual temporal shift | -3 | 8.357 | 5.219 | SyncNet offset changed in the opposite direction |
+| Normal noise | Added background noise | 2 | 8.098 | 5.000 | Noise reduced confidence slightly without large offset change |
+| Short overlap | Overlapping audio | 1 | 9.523 | 3.943 | Overlap mainly reduced confidence |
+| Other speaker overlap | Competing speaker | 2 | 9.730 | 3.782 | Speaker interference reduced confidence |
+| Loud other speaker overlap | Loud competing speaker | 2 | 10.740 | 3.157 | Strong competing speech further reduced confidence |
+| Full overlap | Full competing overlap | 2 | 12.215 | 1.642 | Severe overlap caused very low confidence |
+| Wav2Lip output with Dave audio | Wav2Lip generated video | -2 | 5.761 | 9.543 | Very high confidence, consistent with SyncNet-style training objective |
+
+These additional SyncNet behaviour experiments suggest that artificial temporal shifts are reflected in the predicted AV offset, while noisy or overlapping audio mainly reduces SyncNet confidence. This supports the interpretation that SyncNet offset and confidence should be analysed together, and that SyncNet alone is not sufficient to judge perceptual lip-sync quality.
 
 ## Key Findings
 
