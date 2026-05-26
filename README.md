@@ -170,3 +170,16 @@ DeepFilterNet: https://github.com/Rikorose/DeepFilterNet
 
 This repository does not reimplement Wav2Lip or SyncNet. It documents experiments analysing robustness of audio-driven lip synchronisation under noisy audio conditions.
 
+## Test Media and Audio Sources
+
+The original input video clip was obtained from publicly available online video content and cropped to a short segment for research experimentation only.
+
+Original video source:  
+https://www.youtube.com/watch?v=7ARBJQn6QkM&t=1175s
+
+The additional reference audio sample used in some experiments was obtained from the NeuTTS project by Neuphonic:
+
+`dave.wav`:  
+https://github.com/neuphonic/neutts/blob/main/samples/dave.wav
+
+All media assets are used strictly for research and experimental evaluation purposes. If requested by the original rights holders, the relevant media files will be removed.
