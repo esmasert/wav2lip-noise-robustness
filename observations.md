@@ -221,4 +221,3 @@ The experiments show that Wav2Lip can produce strong SyncNet alignment, but it i
 DeepFilterNet3 preprocessing improves the results, especially under background speech noise, but it does not fully solve the problem.
 
 The main conclusion is that robust audio-driven lip synchronisation requires more than temporal alignment. It also requires speech-aware audio conditioning and perceptual visual quality evaluation.
-

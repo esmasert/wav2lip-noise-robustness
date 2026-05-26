@@ -33,3 +33,8 @@ results/videos/**/*.avi
 
 # Logs
 *.log
+
+!results/syncnet_analysis/videos/*.mov
+!results/syncnet_analysis/videos/*.avi
+!results/syncnet_analysis/videos/*.mp4
+

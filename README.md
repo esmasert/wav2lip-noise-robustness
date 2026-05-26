@@ -88,6 +88,47 @@ Below is a concise, cleaned summary of the main SyncNet metrics from the experim
 - **The results indicate that robust audio-driven lip synchronisation likely requires speech-aware conditioning representations**
   - Future directions include HuBERT, WavLM, source separation, speech enhancement, and perceptual visual evaluation metrics.
 
+## Additional SyncNet Behaviour Analysis
+
+We added a focused set of SyncNet behaviour experiments investigating manual temporal shifts and speaker overlap conditions. The experiments probe how SyncNet reacts to controlled audio lead/lag, overlapping speakers, and loud competing speech. Key takeaways are summarised below and a compact results table is included for reference.
+
+**Summary of new findings:**
+- **Manual temporal shifts** (audio delayed/advanced by 200 ms) caused SyncNet to change its predicted AV offset in the expected direction and magnitude.
+- **Noise and short overlap conditions** primarily reduced SyncNet confidence scores rather than producing large AV offset errors.
+- **Full overlap and loud competing speaker** scenarios produced substantial confidence drops, indicating reduced SyncNet reliability under speaker-confusion conditions.
+- **Wav2Lip outputs** continued to show very high SyncNet confidence because the model is trained with a SyncNet-style objective.
+
+**Selected SyncNet behaviour results** (from `results/syncnet_analysis/tables/syncnet_behaviour_results.md`):
+
+| experiment_name | video_file | av_offset | min_dist | confidence | status |
+|---|---|---|---:|---:|---|
+| example | data/example.avi | 3 | 6.556 | 8.353 | OK |
+| test_10sec_syncnet | data/test_10sec_syncnet.avi | NA | NA | NA | PARSE_FAILED |
+| test10_pipeline | data/test10_pipeline.avi | 2 | 8.164 | 5.420 | OK |
+| test98_audio_delay_200ms | data/test98_audio_delay_200ms.avi | NA | NA | NA | SYNCNET_FAILED |
+| test98_pipeline | data/test98_pipeline.avi | 2 | 8.159 | 5.387 | OK |
+| test98_audio_advance_200ms | data/test98_audio_advance_200ms.mov | 7 | 8.514 | 5.109 | OK |
+| test98_audio_delay_200ms | data/test98_audio_delay_200ms.mov | -3 | 8.357 | 5.219 | OK |
+| test98_full_overlap | data/test98_full_overlap.mov | 2 | 12.215 | 1.642 | OK |
+| test98_noise | data/test98_noise.mov | 2 | 8.098 | 5.000 | OK |
+| test98_other_speaker_overlap_loud | data/test98_other_speaker_overlap_loud.mov | 2 | 10.740 | 3.157 | OK |
+| test98_other_speaker_overlap | data/test98_other_speaker_overlap.mov | 2 | 9.730 | 3.782 | OK |
+| test98_overlap | data/test98_overlap.mov | 1 | 9.523 | 3.943 | OK |
+| result_dave_wav2lip | data/result_dave_wav2lip.mp4 | -2 | 5.761 | 9.543 | OK |
+| test_10sec | data/test_10sec.mp4 | 0 | 7.432 | 6.662 | OK |
+
+For full, raw results and the original result file see: [results/syncnet_analysis/tables/syncnet_behaviour_results.md](results/syncnet_analysis/tables/syncnet_behaviour_results.md)
+
+Video examples for these tests are stored (or expected) under `results/syncnet_analysis/videos/` with subfolders:
+
+- `audio_delay/`
+- `audio_advance/`
+- `overlap/`
+- `competing_speaker_overlap/`
+- `full_overlap/`
+
+Place the tested example videos in the appropriate subfolders for quick inspection; placeholder READMEs are included in each directory describing expected filenames.
+
 ## Limitations
 - Checkpoints and large video files are excluded from the repo.
 - Reproducibility requires external Wav2Lip and SyncNet repositories and model files.

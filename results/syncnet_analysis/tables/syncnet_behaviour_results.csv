@@ -1,0 +1,15 @@
+experiment_name,video_file,av_offset,min_dist,confidence,status
+example,data/example.avi,3,6.556,8.353,OK
+test_10sec_syncnet,data/test_10sec_syncnet.avi,NA,NA,NA,PARSE_FAILED
+test10_pipeline,data/test10_pipeline.avi,2,8.164,5.420,OK
+test98_audio_delay_200ms,data/test98_audio_delay_200ms.avi,NA,NA,NA,SYNCNET_FAILED
+test98_pipeline,data/test98_pipeline.avi,2,8.159,5.387,OK
+test98_audio_advance_200ms,data/test98_audio_advance_200ms.mov,7,8.514,5.109,OK
+test98_audio_delay_200ms,data/test98_audio_delay_200ms.mov,-3,8.357,5.219,OK
+test98_full_overlap,data/test98_full_overlap.mov,2,12.215,1.642,OK
+test98_noise,data/test98_noise.mov,2,8.098,5.000,OK
+test98_other_speaker_overlap_loud,data/test98_other_speaker_overlap_loud.mov,2,10.740,3.157,OK
+test98_other_speaker_overlap,data/test98_other_speaker_overlap.mov,2,9.730,3.782,OK
+test98_overlap,data/test98_overlap.mov,1,9.523,3.943,OK
+result_dave_wav2lip,data/result_dave_wav2lip.mp4,-2,5.761,9.543,OK
+test_10sec,data/test_10sec.mp4,0,7.432,6.662,OK
