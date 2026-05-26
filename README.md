@@ -125,15 +125,13 @@ These additional SyncNet behaviour experiments suggest that artificial temporal 
   - Future directions include HuBERT, WavLM, source separation, speech enhancement, and perceptual visual evaluation metrics.
 
 ## Limitations
-- Checkpoints and large video files are excluded from the repo.
+- Model checkpoints are excluded from the repository.
+- Small experiment videos are included for reproducibility and qualitative inspection.
 - Reproducibility requires external Wav2Lip and SyncNet repositories and model files.
 
 ## Future work
 - Evaluate HuBERT/WavLM conditioning.
 - Integrate alternative denoisers and compare effect on SyncNet.
-
-## External repositories
-This project references external code: Wav2Lip and SyncNet. Install them separately and place model checkpoints as described below.
 
 ## Checkpoints (do not commit)
 - wav2lip_gan.pth
