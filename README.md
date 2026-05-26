@@ -55,7 +55,9 @@ Structured result tables are available in `results/tables/`:
 - `results/tables/all_results_summary.csv`
 - `results/tables/all_results_summary.md`
 
-Below is a concise, cleaned summary of the main SyncNet metrics from the experiments:
+The main results are summarised in two tables:
+- Wav2Lip noise robustness results
+- Additional SyncNet behaviour results
 
 ## Main Wav2Lip Noise Robustness Results
 
