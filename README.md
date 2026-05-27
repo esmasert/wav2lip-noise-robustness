@@ -135,24 +135,6 @@ These additional SyncNet behaviour experiments suggest that artificial temporal 
 - Evaluate HuBERT/WavLM conditioning.
 - Integrate alternative denoisers and compare effect on SyncNet.
 
-## Checkpoints (do not commit)
-- wav2lip_gan.pth
-- syncnet_v2.model
-- s3fd.pth
-
-## How to run (example)
-Set `WAV2LIP_PATH` and `SYNCNET_PATH` environment variables to point to local clones. Then:
-
-```bash
-bash scripts/generate_noisy_audio.sh audio_samples/original_audio.wav
-bash scripts/run_wav2lip.sh audio_samples/ output_videos/ input_face.mp4
-bash scripts/run_deepfilternet.sh audio_samples/ audio_samples/denoised/
-bash scripts/run_wav2lip.sh audio_samples/denoised/ output_videos_denoised/ input_face.mp4
-bash scripts/run_syncnet.sh output_videos/ results/syncnet_logs/
-```
-
-See `scripts/` for detailed usage.
-
 ## External repositories
 
 Wav2Lip: https://github.com/Rudrabha/Wav2Lip
