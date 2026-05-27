@@ -161,10 +161,6 @@ SyncNet: https://github.com/joonson/syncnet_python
 
 DeepFilterNet: https://github.com/Rikorose/DeepFilterNet
 
-## Disclaimer
-
-This repository does not reimplement Wav2Lip or SyncNet. It documents experiments analysing robustness of audio-driven lip synchronisation under noisy audio conditions.
-
 ## Test Media and Audio Sources
 
 The original input video clip was obtained from publicly available online video content and cropped to a short segment for research experimentation only.
